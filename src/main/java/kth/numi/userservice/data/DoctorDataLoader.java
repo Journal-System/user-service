@@ -30,6 +30,8 @@ public class DoctorDataLoader implements CommandLineRunner {
         Doctor doctor4 = createDoctor("Emily", "Williams", "Cairo", "emily.williams@example.com", "Doctor4", "1234567804");
         Doctor doctor5 = createDoctor("Michael", "Anderson", "Barcelona", "michael.anderson@example.com", "Doctor5", "1234567805");
         Doctor doctor6 = createDoctor("Samantha", "Brown", "Amsterdam", "samantha.brown@example.com", "Doctor6", "1234567806");
+        Doctor doctor7 = createDoctor("Mikael", "Söderström", "Älvsjö", "mike@kth.se", "Doctor7", "0219923934");
+        Doctor doctor8 = createDoctor("Nuh", "Jama", "Hjulsta", "nuh@kth.se", "Doctor8", "0747289503");
 
         doctorRepository.save(doctor1);
         doctorRepository.save(doctor2);
@@ -37,6 +39,8 @@ public class DoctorDataLoader implements CommandLineRunner {
         doctorRepository.save(doctor4);
         doctorRepository.save(doctor5);
         doctorRepository.save(doctor6);
+        doctorRepository.save(doctor7);
+        doctorRepository.save(doctor8);
     }
 
     private Doctor createDoctor(String firstname, String lastname, String address, String email, String password, String phone) {

@@ -5,11 +5,6 @@ This is a simple user service that allows you to create, update, delete and get 
 
 ## Getting Started
 
-### Database
-If you want to add new data to your database then you have to change spring.jpa.hibernate.ddl-auto property to `create-drop`. After you have added the data you have to change it back to `update`. 
-
-Otherwise the application will crash because it tries to create the tables again and the tables already exist.
-
 ### Docker
 1. Run `mvn clean install` to build the project
 2. Run `./mvnw package` to build the project

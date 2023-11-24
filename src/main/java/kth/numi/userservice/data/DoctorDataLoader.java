@@ -17,11 +17,12 @@ public class DoctorDataLoader implements CommandLineRunner {
     public DoctorDataLoader(DoctorRepository doctorRepository, PasswordEncoder passwordEncoder) {
         this.doctorRepository = doctorRepository;
         this.passwordEncoder = passwordEncoder;
-        initializeDoctors();
     }
 
     @Override
-    public void run(String... args) { }
+    public void run(String... args) {
+        initializeDoctors();
+    }
 
     private void initializeDoctors() {
         Doctor doctor1 = createDoctor("John", "Doe", "Stockholm", "john.doe@example.com", "Doctor1", "1234567801");

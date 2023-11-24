@@ -19,10 +19,11 @@ public class PatientDataLoader implements CommandLineRunner {
                              PasswordEncoder passwordEncoder) {
         this.patientRepository = patientRepository;
         this.passwordEncoder = passwordEncoder;
-        initializePatients();
     }
     @Override
-    public void run(String... args) { }
+    public void run(String... args) {
+        initializePatients();
+    }
 
     private void initializePatients() {
         Patient patient1 = createPatient("Alice", "Johnson", "123 Main Street", "alice@example.com", "Password1", "1234567890");

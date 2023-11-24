@@ -18,11 +18,12 @@ public class StaffDataLoader implements CommandLineRunner {
     public StaffDataLoader(StaffRepository staffRepository, PasswordEncoder passwordEncoder) {
         this.staffRepository = staffRepository;
         this.passwordEncoder = passwordEncoder;
-        initializeStaffs();
     }
 
     @Override
-    public void run(String... args) { }
+    public void run(String... args) {
+        initializeStaffs();
+    }
 
     private void initializeStaffs() {
         Staff staff1 = createStaff("Alex", "Miller", "Malmo", "alex.miller@example.com", "Staff1", "1234567811");

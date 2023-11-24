@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mysql-patient:
-    container_name: mysql-Patient
+    container_name: mysql
     image: mysql
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -12,8 +12,8 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
   springboot-userService:
-    container_name: user-service-container
-    image: user-service-image
+    container_name: user-service
+    image: user-service
     build:
       context: ./
       dockerfile: DockerFile

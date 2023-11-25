@@ -10,6 +10,9 @@ This is a simple user service that allows you to create, update, delete and get 
 2. Run `./mvnw package` to build the project
 3. Run `docker-compose up --build` to build the project
 
+### Port
+The application runs on port `8081`
+
 ### Swagger
 1. Run the application
 2. Go to `http://localhost:8081/swagger-ui/index.html#/` to view the API documentation

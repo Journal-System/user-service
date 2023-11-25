@@ -32,7 +32,8 @@ public class UserserviceApplication {
 						"/user/**",
 						"/staff/**",
 						"/doctor/**",
-						"/patient/**")
+						"/patient/**",
+						"/authentication/**")
 				.build();
 	}
 }

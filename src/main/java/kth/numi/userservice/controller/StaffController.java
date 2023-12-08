@@ -33,7 +33,7 @@ public class StaffController {
         return staffService.getStaff(id);
     }
 
-    @GetMapping("getAllStaffs")
+    @GetMapping("/getAllStaffs")
     @Operation(summary = "Get all staffs",
             description = "Get all the staffs from the database")
     public ResponseEntity<?> getAllStaffs() {

@@ -2,7 +2,7 @@ package kth.numi.userservice.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import kth.numi.userservice.roles.UserRole;
+import kth.numi.userservice.roles.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(hidden = true)
     private int id;
@@ -46,8 +46,8 @@ public class User {
     @Schema(example = "123 Main St, City, Country")
     private String address;
 
-    @Column(name = "UserRole", nullable = false)
+    @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     @Schema(hidden = true)
-    private UserRole userRole;
+    private Role role;
 }

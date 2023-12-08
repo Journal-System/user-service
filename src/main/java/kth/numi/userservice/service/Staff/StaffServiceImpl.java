@@ -3,7 +3,7 @@ package kth.numi.userservice.service.Staff;
 import kth.numi.userservice.model.Staff;
 import kth.numi.userservice.model.User;
 import kth.numi.userservice.repository.StaffRepository;
-import kth.numi.userservice.roles.UserRole;
+import kth.numi.userservice.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +59,7 @@ public class StaffServiceImpl implements StaffService {
             staff.setEmail(user.getEmail());
             staff.setPassword(passwordEncoder.encode(user.getPassword()));
             staff.setPhone(user.getPhone());
-            staff.setUserRole(UserRole.STAFF);
+            staff.setRole(Role.STAFF);
             staffRepository.save(staff);
             return ResponseEntity.status(HttpStatus.CREATED).body(convertToDto(staff));
         } catch (Exception e) {

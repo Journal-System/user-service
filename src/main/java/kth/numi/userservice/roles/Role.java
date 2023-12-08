@@ -1,6 +1,6 @@
 package kth.numi.userservice.roles;
 
-public enum UserRole {
+public enum Role {
     PATIENT,
     DOCTOR,
     STAFF

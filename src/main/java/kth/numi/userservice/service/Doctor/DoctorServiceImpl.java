@@ -3,7 +3,7 @@ package kth.numi.userservice.service.Doctor;
 import kth.numi.userservice.model.Doctor;
 import kth.numi.userservice.model.User;
 import kth.numi.userservice.repository.DoctorRepository;
-import kth.numi.userservice.roles.UserRole;
+import kth.numi.userservice.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,7 +56,7 @@ public class DoctorServiceImpl implements DoctorService{
             doctor.setEmail(user.getEmail());
             doctor.setPassword(passwordEncoder.encode(user.getPassword()));
             doctor.setPhone(user.getPhone());
-            doctor.setUserRole(UserRole.DOCTOR);
+            doctor.setRole(Role.DOCTOR);
             doctorRepository.save(doctor);
             return ResponseEntity.status(HttpStatus.CREATED).body(convertToDto(doctor));
         } catch (Exception e) {

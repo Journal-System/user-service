@@ -1,7 +1,7 @@
 package kth.numi.userservice.dto;
 
 import kth.numi.userservice.model.User;
-import kth.numi.userservice.roles.UserRole;
+import kth.numi.userservice.roles.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ public class UserDto {
     private String phone;
     private String email;
     private String address;
-    private UserRole userRole;
+    private Role role;
 
     public static UserDto convertToDto(User user) {
         return new UserDto(
@@ -26,7 +26,7 @@ public class UserDto {
                 user.getPhone(),
                 user.getEmail(),
                 user.getAddress(),
-                user.getUserRole()
+                user.getRole()
         );
     }
 

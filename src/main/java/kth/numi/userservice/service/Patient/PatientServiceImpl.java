@@ -3,7 +3,7 @@ package kth.numi.userservice.service.Patient;
 import kth.numi.userservice.model.Patient;
 import kth.numi.userservice.model.User;
 import kth.numi.userservice.repository.PatientRepository;
-import kth.numi.userservice.roles.UserRole;
+import kth.numi.userservice.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,7 +64,7 @@ public class PatientServiceImpl implements PatientService {
             patient.setEmail(user.getEmail());
             patient.setPassword(passwordEncoder.encode(user.getPassword()));
             patient.setPhone(user.getPhone());
-            patient.setUserRole(UserRole.PATIENT);
+            patient.setRole(Role.PATIENT);
             patientRepository.save(patient);
             return ResponseEntity.status(HttpStatus.CREATED).body(convertToDto(patient));
         } catch (Exception e) {
@@ -72,5 +72,4 @@ public class PatientServiceImpl implements PatientService {
                     .body("Could not create this patient");
         }
     }
-
 }

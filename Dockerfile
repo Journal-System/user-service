@@ -6,6 +6,6 @@ RUN mvn -f app/pom.xml install
 
 FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
-COPY --from=build /app/target/PatientApi-1.0.jar /app/PatientApi-1.0.jar
+COPY --from=build /app/target/userservice-0.0.1-SNAPSHOT.jar /app/userservice-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app/PatientApi-1.0.jar"]
+ENTRYPOINT ["java", "-jar", "/app/userservice-0.0.1-SNAPSHOT.jar"]

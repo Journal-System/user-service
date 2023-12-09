@@ -13,9 +13,8 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // all endpoints
-                        .allowedOrigins("https://patient-journal.app.cloud.cbh.kth.se")
+                        .allowedOrigins("http://localhost:4000", "https://patient-journal.app.cloud.cbh.kth.se")
                         .allowedMethods("GET", "POST", "PUT")
-                        .allowedHeaders("Origin", "Content-Type", "Accept", "Authorization")
                         .allowCredentials(true);
             }
         };

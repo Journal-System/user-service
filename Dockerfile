@@ -1,7 +1,7 @@
 FROM eclipse-temurin:17
 VOLUME /tmp
-EXPOSE 8081
-
-COPY /target/userservice-0.0.1-SNAPSHOT.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ARG JAR_FILE
+ADD ${JAR_FILE} app.jar
+COPY entrypoint.sh entrypoint.sh
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]

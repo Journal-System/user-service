@@ -24,14 +24,14 @@ INSERT INTO `user` (address, email, firstname, lastname, password, phone, role) 
 INSERT INTO `user` (address, email, firstname, lastname, password, phone, role) VALUES ('Staff Address 6', 'staff6@example.com', 'Staff', 'Six', '$2a$12$6jo/wnH3WHgAQQpa0kmbZ.mSY1MIbN6m58Ahel7HidR1VjzOtZkRe', '5678901234', 'STAFF'); -- STAFF6
 
 
-# Inserting data into the patient table
+-- Inserting data into the patient table
 INSERT INTO patient (id) VALUES (1);
 INSERT INTO patient (id) VALUES (2);
 INSERT INTO patient (id) VALUES (3);
 INSERT INTO patient (id) VALUES (4);
 INSERT INTO patient (id) VALUES (5);
 
-# Inserting data into the doctor table
+-- Inserting data into the doctor table
 INSERT INTO doctor (id) VALUES (6);
 INSERT INTO doctor (id) VALUES (7);
 INSERT INTO doctor (id) VALUES (8);
@@ -39,7 +39,7 @@ INSERT INTO doctor (id) VALUES (9);
 INSERT INTO doctor (id) VALUES (10);
 INSERT INTO doctor (id) VALUES (11);
 
-# Inserting data into the staff table
+-- Inserting data into the staff table
 INSERT INTO staff (id) VALUES (12);
 INSERT INTO staff (id) VALUES (13);
 INSERT INTO staff (id) VALUES (14);

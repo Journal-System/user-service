@@ -16,8 +16,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     final private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AuthenticationServiceImpl(AuthenticationRepository authenticationRepository,
-                                     PasswordEncoder passwordEncoder) {
+    public AuthenticationServiceImpl(AuthenticationRepository authenticationRepository, PasswordEncoder passwordEncoder) {
         this.authenticationRepository = authenticationRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -35,6 +34,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                         .body("Invalid credentials");
             }
         } catch (Exception e) {
+            // print the stack trace of the exception for debugging purposes
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("An error occurred");
         }

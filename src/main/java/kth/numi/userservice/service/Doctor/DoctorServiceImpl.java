@@ -14,7 +14,7 @@ import java.util.Optional;
 import static kth.numi.userservice.dto.UserDto.convertToDto;
 
 @Service
-public class DoctorServiceImpl implements DoctorService{
+public class DoctorServiceImpl implements DoctorService {
     final private DoctorRepository doctorRepository;
     final private PasswordEncoder passwordEncoder;
     @Autowired
@@ -31,7 +31,7 @@ public class DoctorServiceImpl implements DoctorService{
             }
             return ResponseEntity.status(HttpStatus.OK).body(convertToDto(doctor.get()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
         }
     }
 
@@ -39,9 +39,12 @@ public class DoctorServiceImpl implements DoctorService{
     public ResponseEntity<?> getAllDoctors() {
         try {
             List<Doctor> doctors = doctorRepository.findAll();
+            if (doctors.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No doctors found");
+            }
             return ResponseEntity.status(HttpStatus.OK).body(convertToDto(doctors));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No doctors found");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
         }
     }
 

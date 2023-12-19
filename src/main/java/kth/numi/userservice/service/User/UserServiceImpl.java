@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
                     .body(convertToDto(user.get()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("");
+                    .body("An error occurred");
         }
     }
 
@@ -40,11 +40,15 @@ public class UserServiceImpl implements UserService{
     public ResponseEntity<?> getAllUsers() {
         try {
             List<User> users = userRepository.findAll();
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(convertToDto(users));
-        } catch (Exception e) {
+            if (!users.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(convertToDto(users));
+            }
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No user found");
+                    .body("No users found");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred");
         }
     }
 }

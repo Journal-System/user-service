@@ -21,7 +21,9 @@ public class DoctorController {
     @GetMapping("/get/{id}")
     @Operation(summary = "Get a doctor",
             description = "Get a doctor from the database")
-    public ResponseEntity<?> getDoctor(@PathVariable Integer id) { return doctorService.getDoctor(id); }
+    public ResponseEntity<?> getDoctor(@PathVariable Integer id) {
+        return doctorService.getDoctor(id);
+    }
 
     @GetMapping("/getAllDoctors")
     @Operation(summary = "Get all doctors",

@@ -34,7 +34,7 @@ public class StaffServiceImpl implements StaffService {
             }
             return ResponseEntity.status(HttpStatus.OK).body(convertToDto(staff.get()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
         }
     }
 
@@ -42,9 +42,14 @@ public class StaffServiceImpl implements StaffService {
     public ResponseEntity<?> getAllStaffs() {
         try {
             List<Staff> staffs = staffRepository.findAll();
-            return ResponseEntity.status(HttpStatus.OK).body(convertToDto(staffs));
+            if (!staffs.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.OK).body(convertToDto(staffs));
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No staffs found");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No staff found");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred");
         }
     }
 

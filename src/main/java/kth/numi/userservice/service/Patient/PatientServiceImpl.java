@@ -37,7 +37,7 @@ public class PatientServiceImpl implements PatientService {
                     .body(convertToDto(patient.get()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("");
+                    .body("An error occurred");
         }
     }
 
@@ -45,11 +45,15 @@ public class PatientServiceImpl implements PatientService {
     public ResponseEntity<?> getAllPatients() {
         try {
             List<Patient> patients = patientRepository.findAll();
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(convertToDto(patients));
-        } catch (Exception e) {
+            if (!patients.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(convertToDto(patients));
+            }
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("No patients found");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred");
         }
     }
 

@@ -14,8 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,20 +34,16 @@ class DoctorServiceImplTest {
     }
     @Test
     void testToGetDoctorThatExists() {
-        Doctor mockDoctor = new Doctor();
-        mockDoctor.setId(1);
-        mockDoctor.setFirstname("Test");
-        mockDoctor.setLastname("Test");
-        mockDoctor.setAddress("Stockholm");
-        mockDoctor.setEmail("test@test.com");
-        mockDoctor.setPassword(passwordEncoder.encode("PASSWORD123"));
-        mockDoctor.setPhone("0769120231");
-        mockDoctor.setRole(Role.DOCTOR);
+        Doctor mockDoctor = createDoctor();
 
         when(doctorRepository.findById(1)).thenReturn(Optional.of(mockDoctor));
+
         ResponseEntity<?> response = doctorServiceImpl.getDoctor(1);
+
         UserDto resultDoctor = (UserDto) response.getBody();
+
         assertNotNull(response, "Result should not be null if doctor is found");
+
         assertEquals(response.getBody(), convertToDto(mockDoctor));
         assertEquals(resultDoctor.getId(), mockDoctor.getId());
         assertEquals(resultDoctor.getRole(), mockDoctor.getRole());
@@ -65,6 +59,7 @@ class DoctorServiceImplTest {
         when(doctorRepository.findById(1)).thenReturn(Optional.empty());
 
         ResponseEntity<?> response = doctorServiceImpl.getDoctor(1);
+
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals("Could not find this doctor", response.getBody());
     }
@@ -81,25 +76,9 @@ class DoctorServiceImplTest {
 
     @Test
     void testToGetAllDoctorsIfExist() {
-        Doctor mockDoctor1 = new Doctor();
-        mockDoctor1.setId(1);
-        mockDoctor1.setFirstname("Test1");
-        mockDoctor1.setLastname("Test1");
-        mockDoctor1.setAddress("Stockholm");
-        mockDoctor1.setEmail("test1@test1.com");
-        mockDoctor1.setPassword(passwordEncoder.encode("PASSWORD123"));
-        mockDoctor1.setPhone("0765931031");
-        mockDoctor1.setRole(Role.DOCTOR);
+        Doctor mockDoctor1 = createDoctor();
 
-        Doctor mockDoctor2 = new Doctor();
-        mockDoctor2.setId(2);
-        mockDoctor2.setFirstname("Test2");
-        mockDoctor2.setLastname("Test2");
-        mockDoctor2.setAddress("Göteborg");
-        mockDoctor2.setEmail("test2@test2.com");
-        mockDoctor2.setPassword(passwordEncoder.encode("PASSWORD123"));
-        mockDoctor2.setPhone("0739130183");
-        mockDoctor2.setRole(Role.DOCTOR);
+        Doctor mockDoctor2 = createDoctor();
 
         List<Doctor> mockDoctorList = new ArrayList<>();
         mockDoctorList.add(mockDoctor1);
@@ -116,6 +95,7 @@ class DoctorServiceImplTest {
         assertEquals(resultDoctor1, convertToDto(mockDoctor1));
         assertEquals(resultDoctor2, convertToDto(mockDoctor2));
     }
+
     @Test
     void testToGetAllDoctorsIfNotExist() {
         when(doctorRepository.findAll()).thenReturn(List.of());
@@ -138,15 +118,7 @@ class DoctorServiceImplTest {
 
     @Test
     void testToSaveDoctorIfValid() {
-        Doctor mockDoctor = new Doctor();
-        mockDoctor.setId(1);
-        mockDoctor.setFirstname("Test");
-        mockDoctor.setLastname("Test");
-        mockDoctor.setAddress("Malmö");
-        mockDoctor.setEmail("test@test.com");
-        mockDoctor.setPassword(passwordEncoder.encode("PASSWORD123"));
-        mockDoctor.setPhone("076942013");
-        mockDoctor.setRole(Role.DOCTOR);
+        Doctor mockDoctor = createDoctor();
 
         when(doctorRepository.save(any(Doctor.class))).thenReturn(mockDoctor);
 
@@ -160,21 +132,26 @@ class DoctorServiceImplTest {
 
     @Test
     void testToSaveDoctorIfException() {
-        Doctor mockDoctor = new Doctor();
-        mockDoctor.setId(1);
-        mockDoctor.setFirstname("Test");
-        mockDoctor.setLastname("Test");
-        mockDoctor.setAddress("Malmö");
-        mockDoctor.setEmail("test@test.com");
-        mockDoctor.setPassword(passwordEncoder.encode("PASSWORD123"));
-        mockDoctor.setPhone("076942013");
-        mockDoctor.setRole(Role.DOCTOR);
+        Doctor mockDoctor = createDoctor();
 
-        when(doctorRepository.save(any(Doctor.class))).thenThrow(new RuntimeException("Internal Service Error"));
+        when(doctorRepository.save(any(Doctor.class))).thenThrow(new RuntimeException("Internal Server Error"));
 
         ResponseEntity<?> response = doctorServiceImpl.saveDoctor(mockDoctor);
 
         assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
         assertEquals(response.getBody(), "Could not create this doctor");
+    }
+
+    private Doctor createDoctor() {
+        Doctor doctor = new Doctor();
+        doctor.setId(1);
+        doctor.setFirstname("Test");
+        doctor.setLastname("Test");
+        doctor.setAddress("Lidköping");
+        doctor.setEmail("test@test.com");
+        doctor.setPassword(passwordEncoder.encode("PASSWORD123"));
+        doctor.setPhone("058912312");
+        doctor.setRole(Role.DOCTOR);
+        return doctor;
     }
 }

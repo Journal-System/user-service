@@ -12,21 +12,19 @@ import static kth.numi.userservice.dto.UserDto.convertToDto;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    final private AuthenticationRepository authenticationRepository;
-    final private PasswordEncoder passwordEncoder;
-
+    private final AuthenticationRepository authenticationRepository;
+    private final PasswordEncoder passwordEncoder;
     @Autowired
     public AuthenticationServiceImpl(AuthenticationRepository authenticationRepository, PasswordEncoder passwordEncoder) {
         this.authenticationRepository = authenticationRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
     @Override
     public ResponseEntity<?> authenticateUser(String email, String password) {
         try {
             Optional<User> foundUser = authenticationRepository.findByEmail(email);
-            if (foundUser.isPresent() &&
-                    passwordEncoder.matches(password, foundUser.get().getPassword())) {
+            if (foundUser.isPresent() && passwordEncoder.matches(password, foundUser.get().getPassword())) {
+
                 return ResponseEntity.status(HttpStatus.OK)
                         .body(convertToDto(foundUser.get()));
             } else {

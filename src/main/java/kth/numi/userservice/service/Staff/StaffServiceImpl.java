@@ -15,10 +15,8 @@ import static kth.numi.userservice.dto.UserDto.convertToDto;
 
 @Service
 public class StaffServiceImpl implements StaffService {
-
     final private StaffRepository staffRepository;
     final private PasswordEncoder passwordEncoder;
-
     @Autowired
     public StaffServiceImpl(StaffRepository staffRepository, PasswordEncoder passwordEncoder) {
         this.staffRepository = staffRepository;

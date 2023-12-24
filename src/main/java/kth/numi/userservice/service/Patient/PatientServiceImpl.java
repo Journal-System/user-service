@@ -15,10 +15,8 @@ import static kth.numi.userservice.dto.UserDto.convertToDto;
 
 @Service
 public class PatientServiceImpl implements PatientService {
-
     final private PatientRepository patientRepository;
     final private PasswordEncoder passwordEncoder;
-
     @Autowired
     public PatientServiceImpl(PatientRepository patientRepository, PasswordEncoder passwordEncoder) {
         this.patientRepository = patientRepository;
@@ -70,7 +68,7 @@ public class PatientServiceImpl implements PatientService {
             patient.setPhone(user.getPhone());
             patient.setRole(Role.PATIENT);
             patientRepository.save(patient);
-            return ResponseEntity.status(HttpStatus.CREATED).body(convertToDto(patient));
+            return ResponseEntity.status(HttpStatus.CREATED).body(convertToDto(user));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Could not create this patient");

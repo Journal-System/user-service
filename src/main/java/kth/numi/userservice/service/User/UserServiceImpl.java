@@ -11,10 +11,8 @@ import java.util.Optional;
 import static kth.numi.userservice.dto.UserDto.convertToDto;
 
 @Service
-public class UserServiceImpl implements UserService{
-
-    final private UserRepository userRepository;
-
+public class UserServiceImpl implements UserService {
+    private final UserRepository userRepository;
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;

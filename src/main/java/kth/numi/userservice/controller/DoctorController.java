@@ -6,6 +6,7 @@ import kth.numi.userservice.model.User;
 import kth.numi.userservice.service.Doctor.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,6 +20,7 @@ public class DoctorController {
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Get a doctor",
             description = "Get a doctor from the database")
     public ResponseEntity<?> getDoctor(@PathVariable Integer id) {
@@ -26,11 +28,13 @@ public class DoctorController {
     }
 
     @GetMapping("/getAllDoctors")
+    @PreAuthorize("hasRole('PATIENT')")
     @Operation(summary = "Get all doctors",
             description = "Get all the doctors from the database")
     public ResponseEntity<?> getAllDoctors() { return doctorService.getAllDoctors(); }
 
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Add a new doctor",
             description = "Create and save a new doctor to the database")
     public ResponseEntity<?> addDoctor(@RequestBody User user) {

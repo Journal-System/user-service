@@ -36,6 +36,8 @@ public class SecurityConfiguration {
                                 .permitAll()
                                 .requestMatchers("/patient/add")
                                 .permitAll()
+                                .requestMatchers("/actuator/health")
+                                .permitAll()
                                 .anyRequest()
                                 .authenticated());
         http

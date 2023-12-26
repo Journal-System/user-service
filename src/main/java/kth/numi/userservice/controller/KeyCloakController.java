@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
-@PreAuthorize("hasRole('ADMIN')")
 @Tag(name = "KeyCloak Controller", description = "Manage Keycloak")
 public class KeyCloakController {
     KeyCloakService keyCloakService;
@@ -33,6 +32,7 @@ public class KeyCloakController {
     @GetMapping("/{userName}")
     @Operation(summary = "Get a user",
             description = "Get a user from keycloak")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<UserRepresentation> getUser(@PathVariable("userName") String userName) {
         List<UserRepresentation> user = keyCloakService.getUser(userName);
         return user;
@@ -41,6 +41,7 @@ public class KeyCloakController {
     @PutMapping("/update/{userId}")
     @Operation(summary = "Update a user",
             description = "Update a user in keycloak")
+    @PreAuthorize("hasRole('ADMIN')")
     public String updateUser(@PathVariable("userId") String userId,
                              @RequestBody User user) {
         keyCloakService.updateUser(userId, user);
@@ -50,6 +51,7 @@ public class KeyCloakController {
     @DeleteMapping("/{userId}")
     @Operation(summary = "Delete a user",
             description = "Delete a user from keycloak")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteUser(@PathVariable("userId") String userId) {
         keyCloakService.deleteUser(userId);
         return "User Deleted Successfully";

@@ -11,4 +11,5 @@ public interface KeyCloakService {
     List<UserRepresentation> getUser(String userName);
     void updateUser(String userId, User user);
     void deleteUser(String userId);
+    ResponseEntity<?> getToken(String email, String password);
 }

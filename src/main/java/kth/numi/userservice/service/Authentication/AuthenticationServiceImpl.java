@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
+
 import static kth.numi.userservice.dto.UserDto.convertToDto;
 
 @Service
@@ -24,7 +25,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         try {
             Optional<User> foundUser = authenticationRepository.findByEmail(email);
             if (foundUser.isPresent() && passwordEncoder.matches(password, foundUser.get().getPassword())) {
-
                 return ResponseEntity.status(HttpStatus.OK)
                         .body(convertToDto(foundUser.get()));
             } else {

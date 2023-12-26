@@ -25,7 +25,7 @@ import java.util.List;
 public class KeyCloakServiceImpl implements KeyCloakService {
 
     @Override
-    public ResponseEntity<?> addUser(User user) throws Exception {
+    public ResponseEntity<?> addUser(User user) {
         CredentialRepresentation credential = Credentials
                 .createPasswordCredentials(user.getPassword());
 
@@ -60,7 +60,7 @@ public class KeyCloakServiceImpl implements KeyCloakService {
                     .roles().get("PATIENT").toRepresentation();
             userResource.roles()
                     .clientLevel(appClient.getId()).add(Arrays.asList(patientClientRole));
-            Keycloak instance = Keycloak.getInstance("http://localhost:8080", "HealthHarbor-Realm", user.getEmail(), user.getPassword(),"user-service", "cEkGSltNbFmxUy8GLtnE0PvkFsqAG1oi");
+            Keycloak instance = Keycloak.getInstance("https://key-cloak.app.cloud.cbh.kth.se", "HealthHarbor-Realm", user.getEmail(), user.getPassword(),"user-service", "J9vb2xEEDQKgCS36AoTuybkssnB63dLw");
             TokenManager tokenmanager = instance.tokenManager();
             String accessToken = tokenmanager.getAccessTokenString();
             System.out.println("Access token: " + accessToken);
@@ -100,5 +100,21 @@ public class KeyCloakServiceImpl implements KeyCloakService {
     public void deleteUser(String userId) {
         UsersResource usersResource = (UsersResource) KeycloakConfig.getInstance();
         usersResource.get(userId).remove();
+    }
+
+    @Override
+    public ResponseEntity<?> getToken(String email, String password) {
+        try {
+            Keycloak instance = Keycloak.getInstance("https://key-cloak.app.cloud.cbh.kth.se", "HealthHarbor-Realm",
+                    email, password,"user-service", "J9vb2xEEDQKgCS36AoTuybkssnB63dLw");
+            TokenManager tokenmanager = instance.tokenManager();
+            String accessToken = tokenmanager.getAccessTokenString();
+            System.out.println("Access token: " + accessToken);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(accessToken);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Could not find the access token");
+        }
     }
 }

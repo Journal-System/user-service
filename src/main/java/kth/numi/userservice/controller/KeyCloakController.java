@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/user")
 @Tag(name = "KeyCloak Controller", description = "Manage Keycloak")
 public class KeyCloakController {
-    KeyCloakService keyCloakService;
+    private final KeyCloakService keyCloakService;
 
     @Autowired
     public KeyCloakController(KeyCloakService keyCloakService) {

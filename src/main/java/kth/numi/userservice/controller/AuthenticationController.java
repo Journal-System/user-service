@@ -26,7 +26,7 @@ public class AuthenticationController {
     @Operation(summary = "User login",
             description = "Authentication a user")
     public ResponseEntity<?> loginUser(@RequestParam String email, @RequestParam String password) {
-        authenticationService.authenticateUser(email, password);
-        return keyCloakService.getToken(email, password);
+        String access_token = (String) keyCloakService.getToken(email, password).getBody();
+        return authenticationService.authenticateUser(email, password, access_token);
     }
 }

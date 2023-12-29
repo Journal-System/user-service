@@ -6,6 +6,8 @@ INSERT INTO `user` (address, email, firstname, lastname, password, phone, role) 
 INSERT INTO `user` (address, email, firstname, lastname, password, phone, role) VALUES ('Patient Address 3', 'patient3@example.com', 'Patient', 'Three', '$2a$12$j.f.Q74nBH9w5EUm.t/Zd.fBrVLEtyO00FWQyV2LgN6bstWMA2Wmm', '1234567890', 'PATIENT'); -- PATIENT3
 INSERT INTO `user` (address, email, firstname, lastname, password, phone, role) VALUES ('Patient Address 4', 'patient4@example.com', 'Patient', 'Four', '$2a$12$azdEtYdGELA9Tz/GxZI6wOj4T1GiWNpF4iKqm1xZTbNrSGUq9TmeW', '2345678901', 'PATIENT'); -- PATIENT4
 INSERT INTO `user` (address, email, firstname, lastname, password, phone, role) VALUES ('Patient Address 5', 'patient5@example.com', 'Patient', 'Five', '$2a$12$dL7hTjOtao8I4hYKHCZ/K.tFSfKocPb6gKRXk8zMdYWWY.bQyTXBu', '3456789012', 'PATIENT'); -- PATIENT5
+INSERT INTO `user` (address, email, firstname, lastname, password, phone, role) VALUES ('Örebro', 'isac.lama@gmail.com', 'Isac', 'Lama', '$2a$12$/oo2BQneDptjDVS7fUhmA.363Mvl8FOn/wUpEELw2cfURF5omCFT6', '06489197423', 'PATIENT'); -- PATIENT6
+
 
 -- DOCTOR
 INSERT INTO `user` (address, email, firstname, lastname, password, phone, role) VALUES ('Doctor Address 1', 'doctor1@example.com', 'Doctor', 'One', '$2a$12$2k8skPFOh0o1nzrh9O9EEOZ4Z9ihHIuCm5ZjqERMYGLfIUGKcWOpS', '1234567890', 'DOCTOR'); -- DOCTOR1
@@ -30,19 +32,20 @@ INSERT INTO patient (id) VALUES (2);
 INSERT INTO patient (id) VALUES (3);
 INSERT INTO patient (id) VALUES (4);
 INSERT INTO patient (id) VALUES (5);
+INSERT INTO patient (id) VALUES (6);
 
 -- Inserting data into the doctor table
-INSERT INTO doctor (id) VALUES (6);
 INSERT INTO doctor (id) VALUES (7);
 INSERT INTO doctor (id) VALUES (8);
 INSERT INTO doctor (id) VALUES (9);
 INSERT INTO doctor (id) VALUES (10);
 INSERT INTO doctor (id) VALUES (11);
+INSERT INTO doctor (id) VALUES (12);
 
 -- Inserting data into the staff table
-INSERT INTO staff (id) VALUES (12);
 INSERT INTO staff (id) VALUES (13);
 INSERT INTO staff (id) VALUES (14);
 INSERT INTO staff (id) VALUES (15);
 INSERT INTO staff (id) VALUES (16);
 INSERT INTO staff (id) VALUES (17);
+INSERT INTO staff (id) VALUES (18);

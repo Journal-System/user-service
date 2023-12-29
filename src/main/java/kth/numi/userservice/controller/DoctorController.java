@@ -31,7 +31,9 @@ public class DoctorController {
     @PreAuthorize("hasRole('PATIENT')")
     @Operation(summary = "Get all doctors",
             description = "Get all the doctors from the database")
-    public ResponseEntity<?> getAllDoctors() { return doctorService.getAllDoctors(); }
+    public ResponseEntity<?> getAllDoctors() {
+        return doctorService.getAllDoctors();
+    }
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ADMIN')")

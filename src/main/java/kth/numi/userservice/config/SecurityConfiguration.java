@@ -1,5 +1,6 @@
 package kth.numi.userservice.config;
 
+import jakarta.ws.rs.HttpMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +38,9 @@ public class SecurityConfiguration {
                                 .requestMatchers("/patient/add")
                                 .permitAll()
                                 .requestMatchers("/actuator/health")
+                                .permitAll()
+                                // fixes the problem with preflight (401)
+                                .requestMatchers(HttpMethod.OPTIONS, "/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated());

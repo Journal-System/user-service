@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthenticationDto {
-
     private Integer id;
     private Role role;
     private String access_token;

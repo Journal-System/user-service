@@ -60,7 +60,7 @@ public class KeyCloakServiceImpl implements KeyCloakService {
                     .roles().get("PATIENT").toRepresentation();
             userResource.roles()
                     .clientLevel(appClient.getId()).add(Arrays.asList(patientClientRole));
-            Keycloak instance = Keycloak.getInstance("https://key-cloak.app.cloud.cbh.kth.se", "HealthHarbor-Realm", user.getEmail(), user.getPassword(),"user-service", "J9vb2xEEDQKgCS36AoTuybkssnB63dLw");
+            Keycloak instance = Keycloak.getInstance("https://key-cloak.app.cloud.cbh.kth.se", "HealthHarbor-Realm", user.getEmail(), user.getPassword(),"user-service", "bDphhdOrw0VDIU0O1zoxPU6dM9ZvFCMM");
             TokenManager tokenmanager = instance.tokenManager();
             String accessToken = tokenmanager.getAccessTokenString();
             System.out.println("Access token: " + accessToken);
@@ -106,7 +106,7 @@ public class KeyCloakServiceImpl implements KeyCloakService {
     public ResponseEntity<?> getToken(String email, String password) {
         try {
             Keycloak instance = Keycloak.getInstance("https://key-cloak.app.cloud.cbh.kth.se", "HealthHarbor-Realm",
-                    email, password,"user-service", "J9vb2xEEDQKgCS36AoTuybkssnB63dLw");
+                    email, password,"user-service", "bDphhdOrw0VDIU0O1zoxPU6dM9ZvFCMM");
             TokenManager tokenmanager = instance.tokenManager();
             String accessToken = tokenmanager.getAccessTokenString();
             System.out.println("Access token: " + accessToken);

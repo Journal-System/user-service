@@ -11,9 +11,9 @@ public class KeycloakConfig {
     final static String serverUrl = "https://key-cloak.app.cloud.cbh.kth.se/";
     public final static String realm = "HealthHarbor-Realm";
     final static String clientId = "user-service";
-    final static String clientSecret = "J9vb2xEEDQKgCS36AoTuybkssnB63dLw";
+    final static String clientSecret = "bDphhdOrw0VDIU0O1zoxPU6dM9ZvFCMM";
     final static String userName = "admin";
-    final static String password = "gycmav-6mujko-rixzAz";
+    final static String password = "xumqy8-vyMgiw-harfut";
 
     public KeycloakConfig() {}
 

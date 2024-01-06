@@ -2,6 +2,7 @@ package kth.numi.userservice.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.transaction.Transactional;
 import kth.numi.userservice.model.User;
 import kth.numi.userservice.service.KeyCloak.KeyCloakService;
 import kth.numi.userservice.service.Patient.PatientService;
@@ -41,6 +42,7 @@ public class PatientController {
     @PostMapping("/add")
     @Operation(summary = "Add a new patient",
             description = "Create and save a new patient to the database")
+    @Transactional(rollbackOn = Exception.class)
     public ResponseEntity<?> addPatient(@RequestBody User user) throws Exception {
         try {
             keyCloakService.addUser(user);
